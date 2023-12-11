@@ -1,8 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "irc";
+header("Access-Control-Allow-Origin: *");
+
 
 header('Content-Type: application/json');
 
@@ -11,6 +9,7 @@ if (!isset($_POST["name"]) or !isset($_POST["message"]) or trim($_POST["message"
     die();
 }
 
+include "consts.php";
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
 if ($conn->connect_error) {

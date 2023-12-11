@@ -1,0 +1,42 @@
+#messageWindow {
+  height: 500px;
+  width: 100%;
+  border: 2px solid whitesmoke;
+  border-radius: 20px;
+  padding: 20px;
+
+}
+.messages {
+    overflow-y: scroll;
+    height: 100%;
+    
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.message {
+  min-height: min-content;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #808080 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #808080;
+  border-radius: 10px;
+  border: 0px solid #ffffff;
+}

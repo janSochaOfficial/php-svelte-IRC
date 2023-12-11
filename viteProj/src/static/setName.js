@@ -1,9 +1,11 @@
+import appConfig from "../appconfig.json";
+
 export async function logIn(name) {
   const formData = new FormData();
   formData.append("name", name);
 
   try {
-    const response = await fetch("logUser.php", {
+    const response = await fetch(appConfig.apiLink + "logUser.php", {
       method: "POST",
       body: formData,
     });

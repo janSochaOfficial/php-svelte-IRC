@@ -1,13 +1,11 @@
 <?php
-
+ header("Access-Control-Allow-Origin: *");
 
 header('Content-Type: application/json');
 
 function changeColor($color, $name) {
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "irc";
+    include "consts.php";
+
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
@@ -19,6 +17,18 @@ function changeColor($color, $name) {
     $attributesStr = json_encode($attributes);
 
     $sql = "UPDATE users SET Attributes = '$attributesStr' WHERE `name` = '$name'";
+    mysqli_query($conn, $sql);
+
+    mysqli_close($conn);
+}
+
+function changeNick($nick, $name) {
+    include "consts.php";
+
+
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    $sql = "UPDATE users SET `Name` = '$nick' WHERE `Name` = '$name'";
     mysqli_query($conn, $sql);
 
     mysqli_close($conn);
@@ -40,7 +50,15 @@ switch($_POST["command"]) {
         $response["Message"] = "color changed to ".$_POST["value"];
 
         break;
-    case "remove":
+    case "nick":
+        if (!isset($_POST["value"])) {
+            header("http_response_code", true, 400);
+            $response["Message"] = "no color selected";
+            break;
+        }
+        changeNick($_POST["value"], $_POST["name"]);
+        $response["Message"] = "nick changed to ".$_POST["value"];
+        $response["newName"] = $_POST["value"];
         break;
     default:
         header("http_response_code", true, 400);

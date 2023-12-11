@@ -1,11 +1,9 @@
 <?php
+ header("Access-Control-Allow-Origin: *");
 $startTime = date_create("")->format("Y-m-d H:i:s.u");
 
 // Database connection parameters
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "irc";
+include "consts.php";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);

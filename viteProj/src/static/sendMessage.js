@@ -1,3 +1,4 @@
+import appConfig from "../appconfig.json";
 export async function sendMessage(name, message) {
 
   const formData = new FormData();
@@ -5,7 +6,7 @@ export async function sendMessage(name, message) {
   formData.append('message', message);
 
   try {
-    const response = await fetch('sendMess.php', {
+    const response = await fetch(appConfig.apiLink + 'sendMess.php', {
       method: 'POST',
       body: formData
     });

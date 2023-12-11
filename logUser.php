@@ -1,8 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "irc";
+ header("Access-Control-Allow-Origin: *");
+ include "consts.php";
+
 
 header('Content-Type: application/json');
 

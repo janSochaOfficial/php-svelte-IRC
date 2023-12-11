@@ -1,3 +1,4 @@
+import appConfig from "../appconfig.json";
 export async function sendCommand(name, message) {
   const formData = new FormData();
   formData.append("name", name);
@@ -5,8 +6,12 @@ export async function sendCommand(name, message) {
   formData.append("command", command);
   const value = message.split(" ").splice(1).join(" ");
   formData.append("value", value);
+
+  if (command == "quit") {
+    window.location.reload();
+  }
   try {
-    const response = await fetch("sendCommand.php", {
+    const response = await fetch(appConfig.apiLink + "sendCommand.php", {
       method: "POST",
       body: formData,
     });
